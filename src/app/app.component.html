@@ -1,5 +1,5 @@
 <div  >
-
+   <!-- Twoway-binding-->
   <label for="name">Vorname: </label>
 
   <input type="text" placeholder="Gib dein Vorname ein!" [(ngModel)]="firstname" required minlength="3">
@@ -10,10 +10,12 @@
   <p>Hallo {{firstname}} {{lastname}} =)</p>
 
   <p>------------------------------------------------------------------------------------</p>
+   <!-- Twoway-binding Object zugreifen-->
   <pre>{{person | json}}</pre>
   <p>{{person.name}}</p>
 
   <p>------------------------------------------------------------------------------------</p>
+   <!-- *ngFor / ngIf-->
   <ul>
     <li *ngFor="let name of names">{{name}}</li>
   </ul>
@@ -27,7 +29,7 @@
     <li>Zweiter Name: {{secondName}}</li>
   </ul>
   <p>------------------------------------------------------------------------------------</p>
-
+   <!-- Total Price berechnen-->
   <p>Quantity:</p>
   <input type="number" [(ngModel)]="quantity" />
   <p>Preis:</p>
@@ -38,6 +40,7 @@
   <button (click)="resetForm()" [disabled]="!quantity && !price" >Reset</button>
 </div>
 <p>------------------------------------------------------------------------------------</p>
+<!-- formGroup -->
 <form [formGroup]="actorForm" >
   <label>Actor Name:</label>
 <input  formControlName="actorName"/></form>
@@ -46,12 +49,22 @@
     }
 
 <p>------------------------------------------------------------------------------------</p>
-
+      <!-- Show/Hide div -->
 <button (click)="show = !show">{{show ? 'hide' : 'show'}}</button>
 <br>
 <div *ngIf="show">Hello World</div>
 
 <p>------------------------------------------------------------------------------------</p>
+<!-- Select Options -->
  <select [(ngModel)]="selectedValue">
      <option *ngFor="let item of items;" [value]="item.name">{{item.name}}</option>
  </select>
+ <p>------------------------------------------------------------------------------------</p>
+<!-- Cupcake Range Rezept  -->
+<label>#of Cupcake</label>
+<input type="range" min="10" max="100" step="10" [value] = countCake() (input)="update($event)">
+<p>Butter: {{butter()}} cups(s)</p>
+<p>Sugar: {{sugar()}} cups(s)</p>
+<p>Flour: {{flour()}} cups(s)</p>
+
+<button (click)="onComputed()">Klick</button>
