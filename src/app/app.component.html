@@ -1,0 +1,57 @@
+<div  >
+
+  <label for="name">Vorname: </label>
+
+  <input type="text" placeholder="Gib dein Vorname ein!" [(ngModel)]="firstname" required minlength="3">
+
+  <label for="name">Nachname: </label>
+  <input type="text" placeholder="Gib dein Vorname ein!" [(ngModel)]="lastname">
+
+  <p>Hallo {{firstname}} {{lastname}} =)</p>
+
+  <p>------------------------------------------------------------------------------------</p>
+  <pre>{{person | json}}</pre>
+  <p>{{person.name}}</p>
+
+  <p>------------------------------------------------------------------------------------</p>
+  <ul>
+    <li *ngFor="let name of names">{{name}}</li>
+  </ul>
+
+  <ul>
+    <li *ngFor="let name of names let i=index">
+      <ng-container *ngIf="i ===1">Zweiter Name: {{name}}</ng-container>
+    </li>
+  </ul>
+  <ul>
+    <li>Zweiter Name: {{secondName}}</li>
+  </ul>
+  <p>------------------------------------------------------------------------------------</p>
+
+  <p>Quantity:</p>
+  <input type="number" [(ngModel)]="quantity" />
+  <p>Preis:</p>
+  <input type="number" [(ngModel)]="price" />
+
+  <p>Total Price: {{totalPrice}}</p>
+  <button (click)="resetForm()" [disabled]="isResetDisabled()" ><b>Reset</b></button>
+  <button (click)="resetForm()" [disabled]="!quantity && !price" >Reset</button>
+</div>
+<p>------------------------------------------------------------------------------------</p>
+<form [formGroup]="actorForm" >
+  <label>Actor Name:</label>
+<input  formControlName="actorName"/></form>
+@if (actorForm.invalid && (actorForm.dirty || actorForm.touched)) {
+  <div (click)="alert()"></div>
+    }
+
+<p>------------------------------------------------------------------------------------</p>
+
+<button (click)="show = !show">{{show ? 'hide' : 'show'}}</button>
+<br>
+<div *ngIf="show">Hello World</div>
+
+<p>------------------------------------------------------------------------------------</p>
+ <select [(ngModel)]="selectedValue">
+     <option *ngFor="let item of items;" [value]="item.name">{{item.name}}</option>
+ </select>
